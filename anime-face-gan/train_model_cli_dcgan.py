@@ -291,6 +291,7 @@ def train_model(sess, saver, train_x,
     random_count = global_var.get('random_count')
     d_opt_runs_per_step = global_var.get('d_opt_runs_per_step')
     g_opt_runs_per_step = global_var.get('g_opt_runs_per_step')
+    epochs = global_var.get('epochs')
 
     # updating the step counter
     global prev_step
@@ -312,10 +313,15 @@ def train_model(sess, saver, train_x,
     d_opt_has_ran = 0
     
     while True:
-        if getch() == 'q':
-            break
         i += 1
-        print('[Epoch %d]' % i)
+        if epochs <= 0:
+            if getch() == 'q':
+                break
+            print('[Epoch %d]' % i)
+        else:
+            if i > epochs:
+                break
+            print('[Epoch %d of %d]' % (i, epochs))
 
         # randomize the indices for the training set
         random_idx = np.arange(m)
@@ -416,9 +422,9 @@ def main():
     d_opt_runs_per_step = 1
     g_opt_runs_per_step = 1
     # defining the directory for storing model weights, the logs and generator outputs
-    weight_dir = 'model'
-    log_dir = 'log'
-    output_dir = 'output'
+    weight_dir = 'model.run1'
+    log_dir = 'log.run1'
+    output_dir = 'output.run1'
     # defining the architecture of D and G
     # `selu` uses the SeLU activation function (Self-normalized Linear Unit), only followed by a dropout layer
     # `bn_first` uses ReLU activation for G and LeakyReLU for D, ordered by (De)Conv2D -> BN -> Activation -> Dropout
@@ -426,7 +432,7 @@ def main():
     d_arch = 'bn_first'
     g_arch = 'bn_first'
     # epochs for training, set it to -1 if you want to exit the program by pressing `Q`
-    epochs = -1
+    epochs = 100
 
     # save to global variables
     global_var.set('image_width', image_width)
@@ -525,7 +531,8 @@ def main():
 
     # start training process
     print('** TRAINING PROCESS STARTED **')
-    print('Press "Q" to exit this program')
+    if epochs <= 0:
+        print('Press "Q" to exit this program')
 
     train_model(sess, saver, train_x, d_opt, g_opt, sampler, image_input, noise_input, sample_noise, dropout_input,
                 summary_dict, summary_writer)

@@ -104,9 +104,9 @@ ENV/
 
 # generated files and training set
 train/
-model/
-output/
-log/
+model*/
+output*/
+log*/
 *.npy
 
 
