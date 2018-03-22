@@ -432,7 +432,7 @@ def main():
     d_arch = 'bn_first'
     g_arch = 'bn_first'
     # epochs for training, set it to -1 if you want to exit the program by pressing `Q`
-    epochs = 100
+    epochs = -1
 
     # save to global variables
     global_var.set('image_width', image_width)
