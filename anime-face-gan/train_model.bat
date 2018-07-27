@@ -1,2 +1,2 @@
-python train_model_cli_dcgan.py
+python train_model_cli_wgan_v2.py
 pause

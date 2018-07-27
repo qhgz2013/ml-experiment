@@ -97,3 +97,17 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+
+# hdf5 data
+*.h5
+*.hdf5
+
+# all compress data
+*.7z
+*.rar
+*.zip
+*.tar
+*.gz
+
+.idea/

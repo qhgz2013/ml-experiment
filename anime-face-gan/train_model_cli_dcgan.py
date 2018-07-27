@@ -353,6 +353,7 @@ def train_model(sess, saver, train_x,
             d_opt_has_ran += 1
             # continue to train the discriminator if d_opt_runs_per_step > 1 (skips training the generator)
             if d_opt_has_ran < d_opt_runs_per_step:
+                step_sum -= 1
                 continue
             d_opt_has_ran %= d_opt_runs_per_step
 

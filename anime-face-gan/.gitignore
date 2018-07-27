@@ -103,7 +103,7 @@ ENV/
 *.rar
 
 # generated files and training set
-train/
+train*/
 model*/
 output*/
 log*/

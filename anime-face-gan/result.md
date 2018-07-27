@@ -1,3 +1,5 @@
+See [this file](run.txt) for detailed hyper parameters
+
 ### run 1
 the default hyper paramters values from the paper
 
